@@ -1,5 +1,4 @@
 //use nvm install v22.2.0 in case of error
-//id=46
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -24,16 +23,16 @@ function App() {
                 while (page <= totalPages) {
                     const response = await axios.get(`${GITLAB_API_URL}/issues`, {
                         headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN },
-                        params: { 
-                            assignee_id: ASSIGNEE_ID, 
-                            state: 'closed', 
-                            per_page: 100, 
+                        params: {
+                            assignee_id: ASSIGNEE_ID,
+                            state: 'closed',
+                            per_page: 100,
                             page,
                             order_by: 'created_at',
                             sort: 'desc'
                         }
                     });
-                    
+
                     allIssues = [...allIssues, ...response.data];
 
                     // GitLab includes pagination info in headers
@@ -57,6 +56,7 @@ function App() {
 
                         projectsMap[projectId] = {
                             title: projectResponse.data.name,
+                            description: projectResponse.data.description,
                             languages: Object.keys(languagesResponse.data),
                             issues: []
                         };
@@ -88,11 +88,12 @@ function App() {
                         {Object.keys(projects).map(projectId => (
                             <div key={projectId}>
                                 <h2>{projects[projectId].title}</h2>
-                                <p>Projet Languages: {projects[projectId].languages.join(', ')}</p>
+                                <p>Project Description: {projects[projectId].description}</p>
+                                <p>Project Languages: {projects[projectId].languages.join(', ')}</p>
                                 <p>Total Issues I worked on: {projects[projectId].issues.length}</p>
                                 {projects[projectId].issues.length > 0 && (
                                     <div>
-                                        <h3>Recent Issues:</h3>
+                                        <h3>Last issues I worked on:</h3>
                                         <ul>
                                             {projects[projectId].issues.slice(0, 4).map(issue => (
                                                 <li key={issue.id}>{issue.title}</li>
@@ -110,3 +111,4 @@ function App() {
 }
 
 export default App;
+
