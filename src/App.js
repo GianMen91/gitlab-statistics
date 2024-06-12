@@ -11,6 +11,7 @@ import { Chart }            from 'react-chartjs-2'
 
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
+import './App.css';
 
 const ACCESS_TOKEN = 'jJaUzHfSsSscFFK5XkBA'; // Your access token
 const GITLAB_API_URL = 'https://harbor.beamzone.net/api/v4';
@@ -161,13 +162,14 @@ function App() {
 
     return (
         <div className="App">
-            <header className="App-header">
+            <header className="header">
                 <h1>GitLab Statistics</h1>
                 {loading ? (
                     <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
                         <CircularProgress />
                     </Box>
                 ) : (
+                <div className="main-content container">
                     <div>
                         <div>
                             <h2>Partial Merge Request History</h2>
@@ -198,6 +200,7 @@ function App() {
                             </div>
                         ))}
                     </div>
+                     </div>
                 )}
             </header>
         </div>
