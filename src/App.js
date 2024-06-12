@@ -1,5 +1,3 @@
-//use nvm install v22.2.0 in case of error
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
