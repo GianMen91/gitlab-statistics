@@ -3,11 +3,8 @@
 A dashboard application built with React to display GitLab statistics, including merge requests, project details, and issue timelines.
 
 ## Table of Contents
-- [Description](#description)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+
+[[_TOC_]]
 
 ## Description
 
