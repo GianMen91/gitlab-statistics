@@ -1,72 +1,77 @@
-# Use nvm install v22.2.0 in case of error
+# GitLab Statistics Dashboard
 
-# Getting Started with Create React App
+A dashboard application built with React to display GitLab statistics, including merge requests, project details, and issue timelines.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+This dashboard application fetches data from the GitLab API to provide statistics about closed issues, merge requests, and project details for a specific assignee. It visualizes the data using React components and Chart.js.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`git clone https://github.com/GianMen91/gitlab-statistics.git`
 
-### `npm test`
+2. Install dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm install`
 
-### `npm run build`
+3. Get or create your GitLab access token
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Log in to your GitLab account.
+- Navigate to your profile settings by clicking on your avatar in the top right corner and selecting Settings.
+- In the left sidebar, click on Access Tokens.
+- Give your token a name, select the desired scopes (e.g., api), and click Create personal access token.
+- Copy the generated token and keep it safe. You'll need it for the next step.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open the project in your preferred code editor and navigate to the App.js file. Replace the placeholder access token with your actual GitLab access token:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`const ACCESS_TOKEN = 'your-access-token'; // Replace 'your-access-token' with your actual GitLab access token`
 
-### `npm run eject`
+5. Start the development server:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`npm start`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Upon loading the application, it will fetch data from the GitLab API and display statistics about closed issues, merge requests, and project details for the specified assignee.
+- The dashboard provides a clean and organized interface for recruiters to view the assignee's contributions and project involvement.
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Contributions from users are highly valued and appreciated. There are two main ways to contribute to this project: through pull requests and issues.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Pull Requests
 
-### Code Splitting
+1. Fork the repository and create a branch from the `main` branch.
+2. Make changes or additions to the code.
+3. Commit the changes, and push them to the branch.
+4. Open a pull request to the `main` branch with a clear and concise description of the changes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Issues
 
-### Analyzing the Bundle Size
+1. Navigate to the [Issues](https://github.com/your-username/your-repository/issues) section of the repository.
+2. Check if there is an existing issue similar to the one you'd like to create.
+3. If there isn't an existing issue, create a new issue by clicking the "New issue" button.
+4. Provide a descriptive title and detailed information about the proposed changes that you want to potentially add to the current script.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+Feel free to contribute and share
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Troubleshooting
 
-### Advanced Configuration
+Use nvm install v22.2.0 in case of error
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## License
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
