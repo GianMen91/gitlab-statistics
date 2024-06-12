@@ -4,7 +4,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 import 'chartjs-adapter-date-fns';
-import { Bar } from 'react-chartjs-2';
+import { Bar,Pie } from 'react-chartjs-2';
 
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Chart }            from 'react-chartjs-2'
@@ -12,10 +12,9 @@ import { Chart }            from 'react-chartjs-2'
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 import './App.css';
-
-const ACCESS_TOKEN = 'jJaUzHfSsSscFFK5XkBA'; // Your access token
+const ACCESS_TOKEN = 'jJaUzHfSsSscFFK5XkBA';
 const GITLAB_API_URL = 'https://harbor.beamzone.net/api/v4';
-const ASSIGNEE_ID = 46; // Your assignee ID
+const ASSIGNEE_ID = 46;
 
 function App() {
     const [projects, setProjects] = useState({});
@@ -46,8 +45,6 @@ function App() {
                     });
 
                     allIssues = [...allIssues, ...response.data];
-
-                    // GitLab includes pagination info in headers
                     totalPages = parseInt(response.headers['x-total-pages'], 10) || 1;
                     page += 1;
                 }
@@ -68,13 +65,10 @@ function App() {
                     });
 
                     allMergeRequests = [...allMergeRequests, ...response.data];
-
-                    // GitLab includes pagination info in headers
                     totalPages = parseInt(response.headers['x-total-pages'], 10) || 1;
                     page += 1;
                 }
 
-                // Fetch project details for each issue and group issues by project
                 const projectsMap = {};
                 for (const issue of allIssues) {
                     const projectId = issue.project_id;
@@ -83,7 +77,6 @@ function App() {
                             headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN }
                         });
 
-                        // Fetch languages for the project
                         const languagesResponse = await axios.get(`${GITLAB_API_URL}/projects/${projectId}/languages`, {
                             headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN }
                         });
@@ -99,22 +92,18 @@ function App() {
                 }
 
                 setProjects(projectsMap);
-                setLoading(false); // Set loading to false once data is fetched
+                setLoading(false);
 
-                // Prepare issue timeline data
                 const timelineData = prepareIssueTimelineData(allIssues);
                 setIssueTimelineData(timelineData);
 
-                // Prepare contribution data
                 const contributionData = prepareContributionData(allIssues);
                 setContributionData(contributionData);
 
-                // Set merge requests data
                 setMergeRequests(allMergeRequests);
-
             } catch (error) {
                 console.error('Error fetching issues and projects:', error);
-                setLoading(false); // Set loading to false in case of error
+                setLoading(false);
             }
         };
 
@@ -160,9 +149,32 @@ function App() {
         }));
     };
 
+    const prepareProjectPieData = (projects) => {
+        const labels = Object.keys(projects).map(projectId => projects[projectId].title);
+        const data = Object.keys(projects).map(projectId => projects[projectId].issues.length);
+
+        return {
+            labels,
+            datasets: [
+                {
+                    label: 'Issues per Project',
+                    data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                    ],
+                },
+            ],
+        };
+    };
+
     return (
         <div className="App">
-            <header className="header">
+            <body>
                 <h1>GitLab Statistics</h1>
                 {loading ? (
                     <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
@@ -170,39 +182,43 @@ function App() {
                     </Box>
                 ) : (
                 <div className="main-content container">
-                    <div>
-                        <div>
-                            <h2>Partial Merge Request History</h2>
-                            <ul>
-                                {mergeRequests.map(mr => (
-                                    <li key={mr.id}>
-                                        <strong>{mr.title}</strong> - {mr.state} - {new Date(mr.created_at).toLocaleDateString()}
-                                    </li>
-                                ))}
-                            </ul>
+                    <div className="chart-container pie-chart-container">
+                        <h2>Issues per Project</h2>
+                        <div style={{ width: '50%' }}>
+                            <Pie data={prepareProjectPieData(projects)} />
                         </div>
-                        {Object.keys(projects).map(projectId => (
-                            <div key={projectId}>
-                                <h2>{projects[projectId].title}</h2>
-                                <p>Project Description: {projects[projectId].description}</p>
-                                <p>Project Languages: {projects[projectId].languages.join(', ')}</p>
-                                <p>Total Issues I worked on: {projects[projectId].issues.length}</p>
-                                {projects[projectId].issues.length > 0 && (
-                                    <div>
-                                        <h3>Last issues I worked on:</h3>
-                                        <ul>
-                                            {projects[projectId].issues.slice(0, 4).map(issue => (
-                                                <li key={issue.id}>{issue.title}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
                     </div>
-                     </div>
+                    {Object.keys(projects).map(projectId => (
+                        <div key={projectId} className="project">
+                            <h2>{projects[projectId].title}</h2>
+                            <p>Project Description: {projects[projectId].description}</p>
+                            <p>Project Languages: {projects[projectId].languages.join(', ')}</p>
+                            <p>Total Issues I worked on: {projects[projectId].issues.length}</p>
+                            {projects[projectId].issues.length > 0 && (
+                                <div>
+                                    <h3>Last issues I worked on:</h3>
+                                    <ul>
+                                        {projects[projectId].issues.slice(0, 4).map(issue => (
+                                            <li key={issue.id}>{issue.title}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                             <div>
+                        <h2>Merge Requests History</h2>
+                        <ul>
+                            {mergeRequests.map(mr => (
+                                <li key={mr.id}>
+                                    <strong>{mr.title}</strong> - {mr.state} - {new Date(mr.created_at).toLocaleDateString()}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
                 )}
-            </header>
+            </body>
         </div>
     );
 }
