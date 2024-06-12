@@ -1,3 +1,5 @@
+# Use nvm install v22.2.0 in case of error
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
