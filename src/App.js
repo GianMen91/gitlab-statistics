@@ -67,105 +67,102 @@ const languageIcons = {
     const [issueTimelineData, setIssueTimelineData] = useState(null);
     const [contributionData, setContributionData] = useState([]);
     const [mergeRequests, setMergeRequests] = useState([]);
-  
+
     useEffect(() => {
-      const fetchIssuesAndProjects = async () => {
-        try {
-          let allIssues = [];
-          let allMergeRequests = [];
-          let page = 1;
-          let totalPages = 1;
-  
-          while (page <= totalPages) {
-            const response = await axios.get(`${GITLAB_API_URL}/issues`, {
-              headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN },
-              params: {
-                assignee_id: ASSIGNEE_ID,
-                state: 'closed',
-                per_page: 100,
-                page,
-                order_by: 'created_at',
-                sort: 'desc',
-              },
-            });
-  
-            allIssues = [...allIssues, ...response.data];
-            totalPages = parseInt(response.headers['x-total-pages'], 10) || 1;
-            page += 1;
-          }
-  
-          page = 1;
-          totalPages = 1;
-          while (page <= totalPages) {
-            const response = await axios.get(`${GITLAB_API_URL}/merge_requests`, {
-              headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN },
-              params: {
-                assignee_id: ASSIGNEE_ID,
-                state: 'closed',
-                per_page: 100,
-                page,
-                order_by: 'created_at',
-                sort: 'desc',
-              },
-            });
-  
-            allMergeRequests = [...allMergeRequests, ...response.data];
-            totalPages = parseInt(response.headers['x-total-pages'], 10) || 1;
-            page += 1;
-          }
-  
-          const projectsMap = {};
-          for (const issue of allIssues) {
-            const projectId = issue.project_id;
-            if (!projectsMap[projectId]) {
-              const projectResponse = await axios.get(`${GITLAB_API_URL}/projects/${projectId}`, {
-                headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN },
-              });
-  
-              const languagesResponse = await axios.get(`${GITLAB_API_URL}/projects/${projectId}/languages`, {
-                headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN },
-              });
-  
-              projectsMap[projectId] = {
-                title: projectResponse.data.name,
-                description: projectResponse.data.description,
-                languages: Object.keys(languagesResponse.data),
-                issues: [],
-                mergeRequests: [], // Add mergeRequests property
-              };
+        const fetchIssuesAndProjects = async () => {
+            try {
+                let allIssues = [];
+                let allMergeRequests = [];
+                let page = 1;
+                let totalPages = 1;
+
+                while (page <= totalPages) {
+                    const response = await axios.get(`${GITLAB_API_URL}/issues`, {
+                        headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN },
+                        params: {
+                            assignee_id: ASSIGNEE_ID,
+                            state: 'closed',
+                            per_page: 100,
+                            page,
+                            order_by: 'created_at',
+                            sort: 'desc'
+                        }
+                    });
+
+                    allIssues = [...allIssues, ...response.data];
+                    totalPages = parseInt(response.headers['x-total-pages'], 10) || 1;
+                    page += 1;
+                }
+
+                page = 1;
+                totalPages = 1;
+                while (page <= totalPages) {
+                    const response = await axios.get(`${GITLAB_API_URL}/merge_requests`, {
+                        headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN },
+                        params: {
+                            assignee_id: ASSIGNEE_ID,
+                            state: 'closed',
+                            per_page: 100,
+                            page,
+                            order_by: 'created_at',
+                            sort: 'desc'
+                        }
+                    });
+
+                    allMergeRequests = [...allMergeRequests, ...response.data];
+                    totalPages = parseInt(response.headers['x-total-pages'], 10) || 1;
+                    page += 1;
+                }
+
+                const projectsMap = {};
+                for (const issue of allIssues) {
+                    const projectId = issue.project_id;
+                    if (!projectsMap[projectId]) {
+                        const projectResponse = await axios.get(`${GITLAB_API_URL}/projects/${projectId}`, {
+                            headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN }
+                        });
+
+                        const languagesResponse = await axios.get(`${GITLAB_API_URL}/projects/${projectId}/languages`, {
+                            headers: { 'PRIVATE-TOKEN': ACCESS_TOKEN }
+                        });
+
+                        projectsMap[projectId] = {
+                            title: projectResponse.data.name,
+                            description: projectResponse.data.description,
+                            languages: Object.keys(languagesResponse.data),
+                            issues: [],
+                            mergeRequests: [], // Add mergeRequests property
+                        };
+                    }
+                    projectsMap[projectId].issues.push(issue);
+                }
+ // Organize merge requests by project
+ for (const mr of allMergeRequests) {
+    const projectId = mr.project_id;
+    if (projectsMap[projectId]) {
+      projectsMap[projectId].mergeRequests.push(mr);
+    }
+  }
+
+  setProjects(projectsMap);
+  setLoading(false);
+
+  const timelineData = prepareIssueTimelineData(allIssues);
+  setIssueTimelineData(timelineData);
+
+  const contributionData = prepareContributionData(allIssues);
+  setContributionData(contributionData);                setMergeRequests(allMergeRequests);
+            } catch (error) {
+                console.error('Error fetching issues and projects:', error);
+                setLoading(false);
             }
-            projectsMap[projectId].issues.push(issue);
-          }
-  
-          // Organize merge requests by project
-          for (const mr of allMergeRequests) {
-            const projectId = mr.project_id;
-            if (projectsMap[projectId]) {
-              projectsMap[projectId].mergeRequests.push(mr);
-            }
-          }
-  
-          setProjects(projectsMap);
-          setLoading(false);
-  
-          const timelineData = prepareIssueTimelineData(allIssues);
-          setIssueTimelineData(timelineData);
-  
-          const contributionData = prepareContributionData(allIssues);
-          setContributionData(contributionData);
-  
-          setMergeRequests(allMergeRequests);
-        } catch (error) {
-          console.error('Error fetching issues and projects:', error);
-          setLoading(false);
-        }
-      };
-  
-      fetchIssuesAndProjects();
+        };
+
+        fetchIssuesAndProjects();
     }, []);
-  
+
     const prepareIssueTimelineData = (issues) => {
-      const issuesByMonth = issues.reduce((acc, issue) => {
+    const issuesByMonth = issues.reduce((acc, issue) => {
         const createdAt = new Date(issue.created_at);
         const month = createdAt.toLocaleString('default', { year: 'numeric', month: 'short' });
         if (!acc[month]) acc[month] = 0;
@@ -202,52 +199,98 @@ const languageIcons = {
         count: contributions[date],
       }));
     };
-  
+
     const prepareProjectPieData = (projects) => {
-      const labels = Object.keys(projects).map((projectId) => projects[projectId].title);
-      const data = Object.keys(projects).map((projectId) => projects[projectId].issues.length);
-  
-      return {
-        labels,
-        datasets: [
-          {
-            label: 'Issues per Project',
-            data,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 159, 64, 0.6)',
+        const labels = Object.keys(projects).map(projectId => projects[projectId].title);
+        const data = Object.keys(projects).map(projectId => projects[projectId].issues.length);
+
+        return {
+            labels,
+            datasets: [
+                {
+                    label: 'Number of Issue I worked on',
+                    data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                    ],
+                },
             ],
-          },
-        ],
-      };
+        };
     };
-  
-    const cleanMergeRequestTitle = (title) => {
+
+      const cleanMergeRequestTitle = (title) => {
       var cleanedTitle = title.replace("Draft: Resolve ", '');
       cleanedTitle = cleanedTitle.replace("WIP: Resolve ", '');
       return cleanedTitle;
+      }
+
+    const prepareLanguagePieData = (projects) => {
+        let languageCounts = {};
+        Object.keys(projects).forEach(projectId => {
+            projects[projectId].languages.forEach(lang => {
+                if (languageCounts[lang]) {
+                    languageCounts[lang]++;
+                } else {
+                    languageCounts[lang] = 1;
+                }
+            });
+        });
+
+        const labels = Object.keys(languageCounts);
+        const data = Object.values(languageCounts);
+
+        return {
+            labels,
+            datasets: [
+                {
+                    label: 'Number of projects using this language',
+                    data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                    ],
+                },
+            ],
+        };
     };
-  
+
     return (
-      <div className="App">
-        <body>
-          <h1>GitLab Statistics</h1>
-          {loading ? (
-            <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-              <CircularProgress />
-            </Box>
-          ) : (
-            <div className="main-content container">
-              <div className="chart-container pie-chart-container">
-                <h2>Issues per Project</h2>
-                <div style={{ width: '50%' }}>
-                  <Pie data={prepareProjectPieData(projects)} />
-                </div>
-              </div>
+        <div className="App">
+            <body>
+                <h1>GitLab Statistics</h1>
+                {loading ? (
+                    <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+                        <CircularProgress />
+                    </Box>
+                ) : (
+                    <div className="main-content container">
+                        <div className="chart-container pie-chart-container">
+                            <h2>Issues per Project</h2>
+                            <div style={{ width: '50%' }}>
+                                <Pie data={prepareProjectPieData(projects)} />
+                            </div>
+                        </div>
+                        <div className="chart-container pie-chart-container">
+                            <h2>Language Usage</h2>
+                            <div style={{ width: '50%' }}>
+                                <Pie data={prepareLanguagePieData(projects)} />
+                            </div>
+                        </div>
               {Object.keys(projects).map((projectId) => (
                 <div key={projectId} className="project">
                   <h2>{projects[projectId].title}</h2>
