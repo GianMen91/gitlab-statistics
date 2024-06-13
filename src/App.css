@@ -62,7 +62,7 @@ h1 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
-  width: calc(33.33% - 20px);
+  width: calc(30% - 20px);
   transition: transform 0.2s;
   text-align: left;
 }
@@ -85,9 +85,29 @@ h1 {
   padding-left: 20px;
 }
 
-.chart-container {
-  width: 100%;
+.chart-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
+}
+
+.chart-card:hover {
+  transform: scale(1.02);
+}
+
+.chart-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  width: 45%; /* Adjust width as needed */
   text-align: center;
 }
 
@@ -99,6 +119,12 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.project-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 /* Media query for responsiveness */

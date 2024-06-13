@@ -278,19 +278,25 @@ const languageIcons = {
                         <CircularProgress />
                     </Box>
                 ) : (
-                    <div className="main-content container">
+        <div className="main-content container">
+            <div className="chart-card">
+                <div className="chart-row">
                         <div className="chart-container pie-chart-container">
+                            
+                   
                             <h2>Issues per Project</h2>
-                            <div style={{ width: '50%' }}>
                                 <Pie data={prepareProjectPieData(projects)} />
-                            </div>
+                          
                         </div>
                         <div className="chart-container pie-chart-container">
+                           
+                     
                             <h2>Language Usage</h2>
-                            <div style={{ width: '50%' }}>
                                 <Pie data={prepareLanguagePieData(projects)} />
-                            </div>
+                           
                         </div>
+                    </div>
+                    </div>
               {Object.keys(projects).map((projectId) => (
                 <div key={projectId} className="card">
                   <h2>{projects[projectId].title}</h2>
@@ -320,7 +326,7 @@ const languageIcons = {
                   )}
                   {projects[projectId].mergeRequests.length > 0 && (
                     <div>
-                      <h3>Merge Requests History</h3>
+                      <h3>Partial Merge Requests History</h3>
                       <ul>
                         {projects[projectId].mergeRequests.map((mr) => (
                           <li key={mr.id}>
