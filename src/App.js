@@ -16,6 +16,24 @@ const ACCESS_TOKEN = 'jJaUzHfSsSscFFK5XkBA';
 const GITLAB_API_URL = 'https://harbor.beamzone.net/api/v4';
 const ASSIGNEE_ID = 46;
 
+
+const languageIcons = {
+    Android: '/assets/languages/android.png',
+    CSS: '/assets/languages/css.png',
+    Dart: '/assets/languages/dart.png',
+    Extjs: '/assets/languages/extjs.png',
+    Flutter: '/assets/languages/flutter.png',
+    HTML: '/assets/languages/html.png',
+    Java: '/assets/languages/java.png',
+    JavaScript: '/assets/languages/javascript.png',
+    ObjectiveC: '/assets/languages/objective-c.png',
+    Python: '/assets/languages/python.png',
+    Ruby: '/assets/languages/ruby.png',
+    Schell: '/assets/languages/shell.png',
+    Swift: '/assets/languages/swift.png',
+    PHP: '/assets/languages/php.png',
+};
+
 function App() {
     const [projects, setProjects] = useState({});
     const [loading, setLoading] = useState(true);
@@ -192,7 +210,15 @@ function App() {
                         <div key={projectId} className="project">
                             <h2>{projects[projectId].title}</h2>
                             <p>Project Description: {projects[projectId].description}</p>
-                            <p>Project Languages: {projects[projectId].languages.join(', ')}</p>
+                            <p>Project Languages: {projects[projectId].languages.map(lang => (
+                                    <img
+                                        key={lang}
+                                        src={languageIcons[lang] || '/assets/languages/default.png'}
+                                        alt={lang}
+                                        title={lang}
+                                        className="language-icon"
+                                    />
+                                ))}</p>
                             <p>Total Issues I worked on: {projects[projectId].issues.length}</p>
                             {projects[projectId].issues.length > 0 && (
                                 <div>
