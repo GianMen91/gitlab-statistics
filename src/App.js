@@ -279,6 +279,7 @@ const languageIcons = {
                     </Box>
                 ) : (
         <div className="main-content container">
+             <h2>Projects and languages</h2>
             <div className="chart-card">
                 <div className="chart-row">
                 <div className="chart-container">
@@ -295,6 +296,7 @@ const languageIcons = {
 </div>
                     </div>
                     </div>
+                    <h2 style={{ width: '100%' }}>Projects List</h2>
               {Object.keys(projects).map((projectId) => (
                 <div key={projectId} className="card">
                   <h2>{projects[projectId].title}</h2>
