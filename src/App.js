@@ -39,8 +39,6 @@ import solidityIcon from './assets/languages/solidity.png';
 const ACCESS_TOKEN = 'jJaUzHfSsSscFFK5XkBA';
 const GITLAB_API_URL = 'https://harbor.beamzone.net/api/v4';
 const ASSIGNEE_ID = 46;
-
-
 const languageIcons = {
     Swift: swiftIcon,
     HTML: htmlIcon,
@@ -60,7 +58,6 @@ const languageIcons = {
     "C++": cPlusPlusIcon,
     Liquid: liquidIcon,
     Solidity: solidityIcon,
-
 };
 
 function App() {
@@ -130,12 +127,21 @@ function App() {
 
                         projectsMap[projectId] = {
                             title: projectResponse.data.name,
-                            description: projectResponse.data.description,
+                            description: projectResponse.data.description || 'not available',
                             languages: Object.keys(languagesResponse.data),
-                            issues: []
+                            issues: [],
+                            mergeRequests: []  // Add mergeRequests array
                         };
                     }
                     projectsMap[projectId].issues.push(issue);
+                }
+
+                // Group merge requests by project
+                for (const mr of allMergeRequests) {
+                    const projectId = mr.project_id;
+                    if (projectsMap[projectId]) {
+                        projectsMap[projectId].mergeRequests.push(mr);
+                    }
                 }
 
                 setProjects(projectsMap);
@@ -260,18 +266,20 @@ function App() {
                                     </ul>
                                 </div>
                             )}
+                            {projects[projectId].mergeRequests.length > 0 && (
+                                <div>
+                                    <h3>Merge Requests:</h3>
+                                    <ul>
+                                        {projects[projectId].mergeRequests.slice(0, 4).map(mr => (
+                                            <li key={mr.id}>
+                                                <strong>{mr.title}</strong> - {mr.state} - {new Date(mr.created_at).toLocaleDateString()}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     ))}
-                             <div>
-                        <h2>Merge Requests History</h2>
-                        <ul>
-                            {mergeRequests.map(mr => (
-                                <li key={mr.id}>
-                                    <strong>{mr.title}</strong> - {mr.state} - {new Date(mr.created_at).toLocaleDateString()}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
                 </div>
                 )}
             </body>
