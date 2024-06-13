@@ -1,41 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import LoadingSpinner from './LoadingSpinner';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import LoginPage from './LoginPage';
+import Sidenav from './Sidenav';
 import Dashboard from './Dashboard';
+import LoadingSpinner from './LoadingSpinner';
 import './App.css';
 
 const GITLAB_API_URL = 'https://harbor.beamzone.net/api/v4';
 
 function App() {
     const [accessToken, setAccessToken] = useState('');
+    const [user, setUser] = useState(null);
     const [projects, setProjects] = useState({});
     const [loading, setLoading] = useState(true);
-    const [assigneeId, setAssigneeId] = useState(null);
 
     const handleLogin = (token) => {
         setAccessToken(token);
-        fetchAssigneeId(token);
+        fetchUserProfile(token);
+        fetchIssuesAndProjects(token);
     };
 
-    const fetchAssigneeId = async (token) => {
+    const fetchUserProfile = async (token) => {
         try {
             const response = await axios.get(`${GITLAB_API_URL}/user`, {
-                headers: {
-                    'PRIVATE-TOKEN': token,
-                },
+                headers: { 'PRIVATE-TOKEN': token },
             });
-            setAssigneeId(response.data.id);
+            setUser(response.data);
         } catch (error) {
-            console.error('Error fetching assignee ID:', error);
+            console.error('Error fetching user profile:', error);
         }
     };
-
-    useEffect(() => {
-        if (accessToken && assigneeId) {
-            fetchIssuesAndProjects(accessToken);
-        }
-    }, [accessToken, assigneeId]);
 
     const fetchIssuesAndProjects = async (token) => {
         setLoading(true);
@@ -49,7 +45,7 @@ function App() {
                 const response = await axios.get(`${GITLAB_API_URL}/issues`, {
                     headers: { 'PRIVATE-TOKEN': token },
                     params: {
-                        assignee_id: assigneeId,
+                        assignee_id: user?.id,
                         state: 'closed',
                         per_page: 100,
                         page,
@@ -69,7 +65,7 @@ function App() {
                 const response = await axios.get(`${GITLAB_API_URL}/merge_requests`, {
                     headers: { 'PRIVATE-TOKEN': token },
                     params: {
-                        assignee_id: assigneeId,
+                        assignee_id: user?.id,
                         state: 'closed',
                         per_page: 100,
                         page,
@@ -121,6 +117,11 @@ function App() {
         }
     };
 
+    const handleLogout = () => {
+        setAccessToken('');
+        setUser(null);
+    };
+
     if (!accessToken) {
         return <LoginPage onLogin={handleLogin} />;
     }
@@ -129,7 +130,14 @@ function App() {
         return <LoadingSpinner />;
     }
 
-    return <Dashboard projects={projects} />;
+    return (
+        <div className="app-container">
+            <Sidenav user={user} onLogout={handleLogout} />
+            <div className="content">
+                <Dashboard projects={projects} />
+            </div>
+        </div>
+    );
 }
 
 export default App;

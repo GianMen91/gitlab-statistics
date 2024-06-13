@@ -8,6 +8,17 @@ body {
   color: black;
 }
 
+.app-container {
+  display: flex;
+}
+
+.content {
+  margin-left: 250px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+
 .loading-container {
   display: flex;
   justify-content: center;
