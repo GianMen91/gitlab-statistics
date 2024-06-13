@@ -12,26 +12,55 @@ import { Chart }            from 'react-chartjs-2'
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 import './App.css';
+
+
+
+import javascriptIcon from './assets/languages/javascript.png';
+import pythonIcon from './assets/languages/python.png';
+import javaIcon from './assets/languages/java.png';
+import phpIcon from './assets/languages/php.png';
+import htmlIcon from './assets/languages/html.png';
+import cssIcon from './assets/languages/css.png';
+import flutterIcon from './assets/languages/flutter.png';
+import swiftIcon from './assets/languages/swift.png';
+import androidIcon from './assets/languages/android.png';
+import dartIcon from './assets/languages/dart.png';
+import extjsIcon from './assets/languages/extjs.png';
+import objectiveCIcon from './assets/languages/objective-c.png';
+import rubyIcon from './assets/languages/ruby.png';
+import shellIcon from './assets/languages/shell.png';
+
+import cIcon from './assets/languages/c.png';
+import cPlusPlusIcon from './assets/languages/c++.png';
+import liquidIcon from './assets/languages/liquid.png';
+import solidityIcon from './assets/languages/solidity.png';
+
+
 const ACCESS_TOKEN = 'jJaUzHfSsSscFFK5XkBA';
 const GITLAB_API_URL = 'https://harbor.beamzone.net/api/v4';
 const ASSIGNEE_ID = 46;
 
 
 const languageIcons = {
-    Android: '/assets/languages/android.png',
-    CSS: '/assets/languages/css.png',
-    Dart: '/assets/languages/dart.png',
-    Extjs: '/assets/languages/extjs.png',
-    Flutter: '/assets/languages/flutter.png',
-    HTML: '/assets/languages/html.png',
-    Java: '/assets/languages/java.png',
-    JavaScript: '/assets/languages/javascript.png',
-    ObjectiveC: '/assets/languages/objective-c.png',
-    Python: '/assets/languages/python.png',
-    Ruby: '/assets/languages/ruby.png',
-    Schell: '/assets/languages/shell.png',
-    Swift: '/assets/languages/swift.png',
-    PHP: '/assets/languages/php.png',
+    Swift: swiftIcon,
+    HTML: htmlIcon,
+    CSS: cssIcon,
+    Android: androidIcon,
+    Dart: dartIcon,
+    Extjs: extjsIcon,
+    Flutter: flutterIcon,
+    Java: javaIcon,
+    JavaScript: javascriptIcon,
+    "Objective-C": objectiveCIcon,
+    Python: pythonIcon,
+    Ruby: rubyIcon,
+    Shell: shellIcon,
+    PHP: phpIcon,
+    C: cIcon,
+    "C++": cPlusPlusIcon,
+    Liquid: liquidIcon,
+    Solidity: solidityIcon,
+
 };
 
 function App() {
@@ -209,8 +238,10 @@ function App() {
                     {Object.keys(projects).map(projectId => (
                         <div key={projectId} className="project">
                             <h2>{projects[projectId].title}</h2>
-                            <p>Project Description: {projects[projectId].description}</p>
-                            <p>Project Languages: {projects[projectId].languages.map(lang => (
+                            <p>Project Description: {projects[projectId].description || 'not available'}</p>
+                            <p>Total Issues I worked on: {projects[projectId].issues.length}</p>
+                            <h3>Project Languages:</h3>
+                            <p>{projects[projectId].languages.map(lang => (
                                     <img
                                         key={lang}
                                         src={languageIcons[lang] || '/assets/languages/default.png'}
@@ -219,7 +250,6 @@ function App() {
                                         className="language-icon"
                                     />
                                 ))}</p>
-                            <p>Total Issues I worked on: {projects[projectId].issues.length}</p>
                             {projects[projectId].issues.length > 0 && (
                                 <div>
                                     <h3>Last issues I worked on:</h3>
