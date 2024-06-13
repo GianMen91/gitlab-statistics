@@ -281,20 +281,18 @@ const languageIcons = {
         <div className="main-content container">
             <div className="chart-card">
                 <div className="chart-row">
-                        <div className="chart-container pie-chart-container">
-                            
-                   
-                            <h2>Issues per Project</h2>
-                                <Pie data={prepareProjectPieData(projects)} />
-                          
-                        </div>
-                        <div className="chart-container pie-chart-container">
-                           
-                     
-                            <h2>Language Usage</h2>
-                                <Pie data={prepareLanguagePieData(projects)} />
-                           
-                        </div>
+                <div className="chart-container">
+  <h2>Issues per Project</h2>
+  <div className="pie-chart-container">
+    <Pie data={prepareProjectPieData(projects)} />
+  </div>
+</div>
+<div className="chart-container">
+  <h2>Language Usage</h2>
+  <div className="pie-chart-container">
+    <Pie data={prepareLanguagePieData(projects)} />
+  </div>
+</div>
                     </div>
                     </div>
               {Object.keys(projects).map((projectId) => (

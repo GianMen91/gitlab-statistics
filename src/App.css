@@ -107,13 +107,16 @@ h1 {
 }
 
 .chart-container {
-  width: 45%; /* Adjust width as needed */
+  width: 100%; /* Adjust width as needed */
   text-align: center;
+  margin-bottom: 20px; /* Add margin bottom for spacing */
 }
 
 .chart-container h2 {
   text-align: center;
+  margin-bottom: 10px; /* Add margin bottom to separate title from chart */
 }
+
 
 .pie-chart-container {
   display: flex;
