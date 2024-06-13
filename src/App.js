@@ -15,6 +15,7 @@ function App() {
     const [user, setUser] = useState(null);
     const [projects, setProjects] = useState({});
     const [loading, setLoading] = useState(true);
+    const [darkMode, setDarkMode] = useState(false); // State for dark mode
 
     const handleLogin = (token) => {
         setAccessToken(token);
@@ -122,6 +123,11 @@ function App() {
         setUser(null);
     };
 
+    const toggleDarkMode = () => {
+        setDarkMode(prevMode => !prevMode);
+        // Optionally, you can save the darkMode preference in localStorage or cookies here
+    };
+
     if (!accessToken) {
         return <LoginPage onLogin={handleLogin} />;
     }
@@ -131,8 +137,8 @@ function App() {
     }
 
     return (
-        <div className="app-container">
-            <Sidenav user={user} onLogout={handleLogout} />
+        <div className={`app-container ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+            <Sidenav user={user} onLogout={handleLogout} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
             <div className="content">
                 <Dashboard projects={projects} />
             </div>
