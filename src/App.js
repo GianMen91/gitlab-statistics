@@ -292,7 +292,7 @@ const languageIcons = {
                             </div>
                         </div>
               {Object.keys(projects).map((projectId) => (
-                <div key={projectId} className="project">
+                <div key={projectId} className="card">
                   <h2>{projects[projectId].title}</h2>
                   <p>Project Description: {projects[projectId].description || 'not available'}</p>
                   <p>Total Issues I worked on: {projects[projectId].issues.length}</p>
