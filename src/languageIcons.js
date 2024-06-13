@@ -6,7 +6,6 @@ import htmlIcon from './assets/languages/html.png';
 import cssIcon from './assets/languages/css.png';
 import flutterIcon from './assets/languages/flutter.png';
 import swiftIcon from './assets/languages/swift.png';
-import androidIcon from './assets/languages/android.png';
 import dartIcon from './assets/languages/dart.png';
 import extjsIcon from './assets/languages/extjs.png';
 import objectiveCIcon from './assets/languages/objective-c.png';
@@ -21,7 +20,6 @@ const languageIcons = {
     Swift: swiftIcon,
     HTML: htmlIcon,
     CSS: cssIcon,
-    Android: androidIcon,
     Dart: dartIcon,
     Extjs: extjsIcon,
     Flutter: flutterIcon,
