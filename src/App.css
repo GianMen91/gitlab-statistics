@@ -132,7 +132,16 @@ h1 {
 
 /* Media query for responsiveness */
 @media (max-width: 768px) {
-  .project {
+  .chart-row {
+    flex-direction: column; /* Stack charts vertically on smaller screens */
+  }
+
+  .chart-container {
     width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    width: 100%; /* Display project cards in a single column */
   }
 }
