@@ -14,14 +14,6 @@ This dashboard application fetches data from the GitLab API to provide statistic
 
 - **ESLint and Stylelint**: Code quality is maintained through the integration of ESLint for JavaScript and Stylelint for styles. This ensures adherence to best practices and coding standards.
 
-### Testing
-
-- **Jest and Enzyme**: Comprehensive testing is implemented using Jest for test execution and Enzyme for component testing. This guarantees the reliability of the application's functionality.
-
-## Testing
-
-Run Jest and Enzyme tests: `npm test`
-
 ## Installation
 
 1. Clone the repository:
