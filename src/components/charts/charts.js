@@ -8,6 +8,7 @@ import { Pie } from 'react-chartjs-2'
 import { Chart } from 'chart.js/auto'
 
 import 'react-calendar-heatmap/dist/styles.css'
+import './charts.css'
 
 // Define the Charts component which takes projects as a prop
 const Charts = ({ projects }) => {

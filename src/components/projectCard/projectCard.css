@@ -1,0 +1,85 @@
+.language-icon {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px color-mix(in srgb, black 20%, transparent);
+  padding: 20px;
+  margin-bottom: 20px;
+  width: calc(30% - 20px);
+  transition: transform 0.2s;
+  text-align: left;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #50b6a5; /* Pastel green */
+  text-align: center;
+}
+
+.card p,
+.card ul {
+  text-align: justify;
+}
+
+.card ul {
+  padding-left: 20px;
+}
+
+.dark-mode .card {
+  background-color: #2d2d2d; /* Dark card background */
+  color: white; /* Light text color for cards */
+}
+
+.dark-mode .card h2 {
+  color: #8cc14c; /* Light green text color for dark mode cards */
+}
+
+.dark-mode .chart-card {
+  background-color: #2d2d2d; /* Dark card background */
+  color: white; /* Light text color for cards */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px color-mix(in srgb, black 20%, transparent);
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
+}
+
+.dark-mode .chart-card:hover {
+  transform: scale(1.02);
+}
+
+.dark-mode .chart-row {
+  display: flex;
+  color: white; /* Light */
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dark-mode .chart-container {
+  width: 100%; /* Adjust width as needed */
+  text-align: center;
+  color: white; /* Light */
+  margin-bottom: 20px; /* Add margin bottom for spacing */
+}
+
+.dark-mode .chart-container h2 {
+  color: #8cc14c; /* Light green text color for dark mode cards */
+}
+
+/* Media query for responsiveness */
+@media (width <= 768px) {
+  .card {
+    width: 90%; /* Display project cards in a single column */
+  } 
+}

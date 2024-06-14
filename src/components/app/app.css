@@ -1,5 +1,3 @@
-/* App.css */
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -17,66 +15,10 @@ body {
   flex-grow: 1;
 }
 
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f4f4f4;
-}
-
-.login-card {
-  background: #fff;
-  padding: 50px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px color-mix(in srgb, black 20%, transparent);
-  text-align: center;
-}
-
-.login-card input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.error-message {
-  color: red;
-  margin-top: 10px;
-}
-
-.login-card button {
-  margin-top: 30px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  background-color: #4a90e2;
-  color: white;
-  cursor: pointer;
-}
-
-.login-card button:hover {
-  background-color: #0056b3;
-}
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-}
-
-.language-icon {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
 }
 
 /* Header styles */
@@ -112,75 +54,6 @@ h3 {
   justify-content: space-between;
 }
 
-.card {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px color-mix(in srgb, black 20%, transparent);
-  padding: 20px;
-  margin-bottom: 20px;
-  width: calc(30% - 20px);
-  transition: transform 0.2s;
-  text-align: left;
-}
-
-.card:hover {
-  transform: scale(1.02);
-}
-
-.card h2 {
-  margin-top: 0;
-  color: #50b6a5; /* Pastel green */
-  text-align: center;
-}
-
-.card p,
-.card ul {
-  text-align: justify;
-}
-
-.card ul {
-  padding-left: 20px;
-}
-
-.chart-card {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px color-mix(in srgb, black 20%, transparent);
-  padding: 20px;
-  margin-bottom: 20px;
-  width: 100%;
-  text-align: left;
-}
-
-.chart-card:hover {
-  transform: scale(1.02);
-}
-
-.chart-row {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.chart-container {
-  width: 100%; /* Adjust width as needed */
-  text-align: center;
-  margin-bottom: 20px; /* Add margin bottom for spacing */
-}
-
-.chart-container h2 {
-  color: #50b6a5; /* Pastel green */
-  text-align: center;
-  margin-bottom: 10px; /* Add margin bottom to separate title from chart */
-}
-
-.pie-chart-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .project-row {
   display: flex;
   flex-wrap: wrap;
@@ -193,10 +66,6 @@ h3 {
   color: white; /* Light text color */
 }
 
-.dark-mode .card {
-  background-color: #2d2d2d; /* Dark card background */
-  color: white; /* Light text color for cards */
-}
 
 .dark-mode .header {
   background-color: #1a1a1a; /* Dark header background */
@@ -206,52 +75,7 @@ h3 {
   border-color: #555; /* Darker loader border color */
 }
 
-.dark-mode .card h2 {
-  color: #8cc14c; /* Light green text color for dark mode cards */
-}
 
-.dark-mode .logout-button {
-  border: 1px solid white; /* White border for logout button */
-  color: white; /* White text color for logout button */
-}
-
-.dark-mode .logout-button:hover {
-  background-color: #555; /* Darker background on hover for logout button */
-}
-
-.dark-mode .chart-card {
-  background-color: #2d2d2d; /* Dark card background */
-  color: white; /* Light text color for cards */
-  border-radius: 10px;
-  box-shadow: 0 2px 4px color-mix(in srgb, black 20%, transparent);
-  padding: 20px;
-  margin-bottom: 20px;
-  width: 100%;
-  text-align: left;
-}
-
-.dark-mode .chart-card:hover {
-  transform: scale(1.02);
-}
-
-.dark-mode .chart-row {
-  display: flex;
-  color: white; /* Light */
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.dark-mode .chart-container {
-  width: 100%; /* Adjust width as needed */
-  text-align: center;
-  color: white; /* Light */
-  margin-bottom: 20px; /* Add margin bottom for spacing */
-}
-
-.dark-mode .chart-container h2 {
-  color: #8cc14c; /* Light green text color for dark mode cards */
-}
 
 @keyframes spin {
   0% {
@@ -272,10 +96,6 @@ h3 {
     .chart-container {
       width: 80%;
       margin-bottom: 20px;
-    }
-
-    .card {
-      width: 90%; /* Display project cards in a single column */
     }
 
     .content {

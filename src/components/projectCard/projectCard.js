@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types' // Import PropTypes for prop types validation
 import languageIcons from '../languageIcons/languageIcons'
+import './projectCard.css'
 
 // Define the ProjectCard component which takes a project as a prop
 const ProjectCard = ({ project }) => {

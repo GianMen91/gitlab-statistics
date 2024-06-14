@@ -1,0 +1,38 @@
+.chart-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px color-mix(in srgb, black 20%, transparent);
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
+}
+
+.chart-card:hover {
+  transform: scale(1.02);
+}
+
+.chart-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  width: 100%; /* Adjust width as needed */
+  text-align: center;
+  margin-bottom: 20px; /* Add margin bottom for spacing */
+}
+
+.chart-container h2 {
+  color: #50b6a5; /* Pastel green */
+  text-align: center;
+  margin-bottom: 10px; /* Add margin bottom to separate title from chart */
+}
+
+.pie-chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

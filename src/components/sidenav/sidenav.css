@@ -141,7 +141,6 @@
   .dark-mode .logout-button:hover {
     background-color: #555; /* Darker background on hover for logout button */
   }
-  
 
 .hamburger-menu div {
   width: 30px;
@@ -163,6 +162,7 @@
   z-index: 1001;
   cursor: pointer;
 }
+
 
 @media (width <= 768px) {
   .hamburger-menu {

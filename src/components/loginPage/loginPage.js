@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types' // Import PropTypes for prop types validation
 import axios from 'axios'
+import './loginPage.css'
 
 const GITLAB_API_URL = 'https://harbor.beamzone.net/api/v4'
 
