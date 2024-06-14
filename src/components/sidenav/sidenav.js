@@ -1,5 +1,5 @@
 import React from 'react';
-import './Sidenav.css';
+import './sidenav.css';
 
 const Sidenav = ({ user, onLogout, darkMode, toggleDarkMode, isActive }) => {
     return (

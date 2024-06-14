@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import LoginPage from './LoginPage';
-import Sidenav from './Sidenav';
-import Dashboard from './Dashboard';
-import LoadingSpinner from './LoadingSpinner';
-import './App.css';
+import LoginPage from '../loginPage/loginPage';
+import Sidenav from '../sidenav/sidenav';
+import Dashboard from '../dashboard/dashboard';
+import LoadingSpinner from '../loadingSpinner/loadingSpinner';
+import './app.css';
 
 const GITLAB_API_URL = 'https://harbor.beamzone.net/api/v4';
 

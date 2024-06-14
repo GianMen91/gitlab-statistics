@@ -1,5 +1,5 @@
 import React from 'react';
-import languageIcons from './languageIcons';
+import languageIcons from '../languageIcons/languageIcons';
 
 
 const ProjectCard = ({ project }) => {

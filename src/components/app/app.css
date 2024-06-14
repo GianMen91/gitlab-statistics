@@ -285,4 +285,8 @@ h3 {
       width: 90%; /* Display project cards in a single column */
     }
 
+    .content {
+      margin-left: 10px;
+    }
+
 }

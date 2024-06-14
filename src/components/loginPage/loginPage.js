@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import axios from 'axios';
 
 const GITLAB_API_URL = 'https://harbor.beamzone.net/api/v4';

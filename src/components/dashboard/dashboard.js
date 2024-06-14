@@ -1,6 +1,6 @@
 import React from 'react';
-import Charts from './Charts';
-import ProjectCard from './ProjectCard';
+import Charts from '../charts/charts';
+import ProjectCard from '../projectCard/projectCard';
 
 const Dashboard = ({ projects }) => (
     <div className="main-content container">

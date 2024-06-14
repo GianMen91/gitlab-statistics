@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import LoginPage from './LoginPage';
+import LoginPage from '../loginPage/loginPage';
 
 import 'chartjs-adapter-date-fns';
 import { Bar, Pie } from 'react-chartjs-2';
