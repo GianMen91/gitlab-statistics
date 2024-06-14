@@ -14,6 +14,7 @@ import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 
 
+
 const Charts = ({ projects }) => {
     const prepareProjectPieData = (projects) => {
         const labels = Object.keys(projects).map((projectId) => projects[projectId].title);

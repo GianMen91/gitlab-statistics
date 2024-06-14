@@ -108,15 +108,7 @@ h3 {
   margin: 20px auto; /* Center the loader */
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 /* Main content styles */
 .main-content {
@@ -264,4 +256,33 @@ h3 {
 
 .dark-mode .chart-container h2 {
   color: #8cc14c; /* Light green text color for dark mode cards */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+
+ 
+    .chart-row {
+      flex-direction: column; /* Stack charts vertically on smaller screens */
+    }
+
+    .chart-container {
+      width: 80%;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      width: 90%; /* Display project cards in a single column */
+    }
+
 }

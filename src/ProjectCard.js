@@ -1,6 +1,7 @@
 import React from 'react';
 import languageIcons from './languageIcons';
 
+
 const ProjectCard = ({ project }) => {
     const cleanMergeRequestTitle = (title) => {
         let cleanedTitle = title.replace('Draft: Resolve ', '');
