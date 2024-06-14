@@ -2,13 +2,25 @@
 
 A dashboard application built with React to display GitLab statistics using [GitLab APIs](https://docs.gitlab.com/ee/api/api_resources.html), including merge requests, project details, and issue timelines.
 
-## Table of Contents
-
-[[_TOC_]]
-
-## Description
+## Overview
 
 This dashboard application fetches data from the GitLab API to provide statistics about closed issues, merge requests, and project details for a specific assignee. It visualizes the data using React components and Chart.js.
+
+## Technologies Utilized
+
+### Frontend
+
+- **React**: The entire project is built using React, taking advantage of its component-based architecture for a modular and scalable codebase.
+
+- **ESLint and Stylelint**: Code quality is maintained through the integration of ESLint for JavaScript and Stylelint for styles. This ensures adherence to best practices and coding standards.
+
+### Testing
+
+- **Jest and Enzyme**: Comprehensive testing is implemented using Jest for test execution and Enzyme for component testing. This guarantees the reliability of the application's functionality.
+
+## Testing
+
+Run Jest and Enzyme tests: `npm test`
 
 ## Installation
 
@@ -56,7 +68,7 @@ Contributions from users are highly valued and appreciated. There are two main w
 
 ### Issues
 
-1. Navigate to the [Issues](https://github.com/your-username/your-repository/issues) section of the repository.
+1. Navigate to the [Issues](https://github.com/GianMen91/gitlab-statistics.git/issues) section of the repository.
 2. Check if there is an existing issue similar to the one you'd like to create.
 3. If there isn't an existing issue, create a new issue by clicking the "New issue" button.
 4. Provide a descriptive title and detailed information about the proposed changes that you want to potentially add to the current script.
