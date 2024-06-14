@@ -2,8 +2,10 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import App from './app'
 
-test('renders learn react link', () => {
+// Mock the axios module
+jest.mock('axios')
+
+test('renders login page when not authenticated', () => {
   render(<App />)
-  const linkElement = screen.getByText(/learn react/i)
-  expect(linkElement).toBeInTheDocument()
+  expect(screen.getByText(/login/i)).toBeInTheDocument()
 })
