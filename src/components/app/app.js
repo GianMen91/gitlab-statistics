@@ -9,6 +9,7 @@ import './app.css'
 const GITLAB_API_URL = 'https://harbor.beamzone.net/api/v4'
 
 function App () {
+  // State variables using useState
   const [accessToken, setAccessToken] = useState('')
   const [user, setUser] = useState(null)
   const [projects, setProjects] = useState({})
@@ -16,12 +17,14 @@ function App () {
   const [darkMode, setDarkMode] = useState(false)
   const [sidenavOpen, setSidenavOpen] = useState(false)
 
+  // Function to handle login and fetch user profile and issues/projects data
   const handleLogin = (token) => {
     setAccessToken(token)
     fetchUserProfile(token)
     fetchIssuesAndProjects(token)
   }
 
+  // Function to fetch user profile from GitLab API
   const fetchUserProfile = async (token) => {
     try {
       const response = await axios.get(`${GITLAB_API_URL}/user`, {
@@ -33,6 +36,7 @@ function App () {
     }
   }
 
+  // Function to fetch closed issues and merge requests assigned to the user
   const fetchIssuesAndProjects = async (token) => {
     setLoading(true)
     try {
@@ -41,6 +45,7 @@ function App () {
       let page = 1
       let totalPages = 1
 
+      // Fetch all closed issues assigned to the user
       while (page <= totalPages) {
         const response = await axios.get(`${GITLAB_API_URL}/issues`, {
           headers: { 'PRIVATE-TOKEN': token },
@@ -61,6 +66,8 @@ function App () {
 
       page = 1
       totalPages = 1
+
+      // Fetch all closed merge requests assigned to the user
       while (page <= totalPages) {
         const response = await axios.get(`${GITLAB_API_URL}/merge_requests`, {
           headers: { 'PRIVATE-TOKEN': token },
@@ -79,6 +86,7 @@ function App () {
         page += 1
       }
 
+      // Process fetched issues and merge requests into projectsMap
       const projectsMap = {}
       for (const issue of allIssues) {
         const projectId = issue.project_id
@@ -102,6 +110,7 @@ function App () {
         projectsMap[projectId].issues.push(issue)
       }
 
+      // Associate merge requests with respective projects in projectsMap
       for (const mr of allMergeRequests) {
         const projectId = mr.project_id
         if (projectsMap[projectId]) {
@@ -109,6 +118,7 @@ function App () {
         }
       }
 
+      // Set projectsMap in state and setLoading to false
       setProjects(projectsMap)
       setLoading(false)
     } catch (error) {
@@ -117,19 +127,23 @@ function App () {
     }
   }
 
+  // Function to handle user logout
   const handleLogout = () => {
     setAccessToken('')
     setUser(null)
   }
 
+  // Function to toggle dark mode
   const toggleDarkMode = () => {
     setDarkMode(prevMode => !prevMode)
   }
 
+  // Function to toggle sidenav open/close state
   const toggleSidenav = () => {
     setSidenavOpen(prevState => !prevState)
   }
 
+  // Render different components based on application state
   if (!accessToken) {
     return <LoginPage onLogin={handleLogin} />
   }
@@ -139,17 +153,20 @@ function App () {
   }
 
   return (
-        <div className={`app-container ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-            <div className="hamburger-menu" onClick={toggleSidenav}>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <Sidenav user={user} onLogout={handleLogout} darkMode={darkMode} toggleDarkMode={toggleDarkMode} isActive={sidenavOpen} />
-            <div className="content">
-                <Dashboard projects={projects} />
-            </div>
-        </div>
+    <div className={`app-container ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+      {/* Hamburger menu icon to toggle sidenav visibility */}
+      <div className="hamburger-menu" onClick={toggleSidenav}>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      {/* Sidenav component */}
+      <Sidenav user={user} onLogout={handleLogout} darkMode={darkMode} toggleDarkMode={toggleDarkMode} isActive={sidenavOpen} />
+      {/* Dashboard component */}
+      <div className="content">
+        <Dashboard projects={projects} />
+      </div>
+    </div>
   )
 }
 
