@@ -15,7 +15,8 @@ function App() {
     const [user, setUser] = useState(null);
     const [projects, setProjects] = useState({});
     const [loading, setLoading] = useState(true);
-    const [darkMode, setDarkMode] = useState(false); // State for dark mode
+    const [darkMode, setDarkMode] = useState(false);
+    const [sidenavOpen, setSidenavOpen] = useState(false);
 
     const handleLogin = (token) => {
         setAccessToken(token);
@@ -125,7 +126,10 @@ function App() {
 
     const toggleDarkMode = () => {
         setDarkMode(prevMode => !prevMode);
-        // Optionally, you can save the darkMode preference in localStorage or cookies here
+    };
+
+    const toggleSidenav = () => {
+        setSidenavOpen(prevState => !prevState);
     };
 
     if (!accessToken) {
@@ -138,7 +142,12 @@ function App() {
 
     return (
         <div className={`app-container ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-            <Sidenav user={user} onLogout={handleLogout} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+            <div className="hamburger-menu" onClick={toggleSidenav}>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <Sidenav user={user} onLogout={handleLogout} darkMode={darkMode} toggleDarkMode={toggleDarkMode} isActive={sidenavOpen} />
             <div className="content">
                 <Dashboard projects={projects} />
             </div>

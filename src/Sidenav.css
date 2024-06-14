@@ -1,15 +1,18 @@
 .sidenav {
-    width: 250px;
-    background-color: grey;
-    color: white;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    position: fixed;
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and text color */
-  }
+  width: 250px;
+  background-color: grey;
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  position: fixed;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and text color */
+  left: 0;
+  top: 0;
+  z-index: 1000; /* Ensure it stays above other content */
+}
   
   .profile-section {
     display: flex;
@@ -142,4 +145,90 @@
     background-color: #555; /* Darker background on hover for logout button */
   }
   
+  media (max-width: 768px) {
+  .sidenav {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sidenav.active {
+    transform: translateX(0);
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
+/* Hamburger menu */
+.hamburger-menu {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+.hamburger-menu div {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+  }
+}
+
+.dark-mode .hamburger-menu div {
+  background-color: white;
+}
+
+@media (max-width: 768px) {
+
+  .sidenav {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sidenav.active {
+    transform: translateX(0);
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
+/* Hamburger menu */
+.hamburger-menu {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+.hamburger-menu div {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+  }
+}
+
+.dark-mode .hamburger-menu div {
+  background-color: white;
+}
   

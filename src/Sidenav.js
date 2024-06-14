@@ -1,9 +1,9 @@
 import React from 'react';
 import './Sidenav.css';
 
-const Sidenav = ({ user, onLogout, darkMode, toggleDarkMode }) => {
+const Sidenav = ({ user, onLogout, darkMode, toggleDarkMode, isActive }) => {
     return (
-        <div className="sidenav">
+        <div className={`sidenav ${isActive ? 'active' : ''}`}>
             <div className="profile-section">
                 <img src={user.avatar_url} alt="User Profile" className="profile-image" />
                 <h2 className="profile-name">{user.name}</h2>
