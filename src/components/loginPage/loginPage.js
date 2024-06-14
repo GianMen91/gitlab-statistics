@@ -48,7 +48,6 @@ const LoginPage = ({ onLogin }) => {
           <select id="gitlabUrl" value={gitlabUrl} onChange={handleGitlabUrlChange}>
             <option value="https://harbor.beamzone.net/api/v4">Harbor</option>
             <option value="https://gitlab.example.com/api/v4">Example GitLab</option>
-            {/* Add more options as needed */}
           </select>
         </div>
         {/* Input field for manually entering GitLab API URL */}
