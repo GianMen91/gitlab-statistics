@@ -1,6 +1,6 @@
-import React from 'react';
-import Charts from '../charts/charts';
-import ProjectCard from '../projectCard/projectCard';
+import React from 'react'
+import Charts from '../charts/charts'
+import ProjectCard from '../projectCard/projectCard'
 
 const Dashboard = ({ projects }) => (
     <div className="main-content container">
@@ -12,6 +12,6 @@ const Dashboard = ({ projects }) => (
             <ProjectCard key={projectId} project={projects[projectId]} />
         ))}
     </div>
-);
+)
 
-export default Dashboard;
+export default Dashboard

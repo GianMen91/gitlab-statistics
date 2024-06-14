@@ -1,15 +1,15 @@
-import React from 'react';
-import languageIcons from '../languageIcons/languageIcons';
+import React from 'react'
+import languageIcons from '../languageIcons/languageIcons'
 
 
 const ProjectCard = ({ project }) => {
-    const cleanMergeRequestTitle = (title) => {
-        let cleanedTitle = title.replace('Draft: Resolve ', '');
-        cleanedTitle = cleanedTitle.replace('WIP: Resolve ', '');
-        return cleanedTitle;
-    };
+  const cleanMergeRequestTitle = (title) => {
+    let cleanedTitle = title.replace('Draft: Resolve ', '')
+    cleanedTitle = cleanedTitle.replace('WIP: Resolve ', '')
+    return cleanedTitle
+  };
 
-    return (
+  return (
         <div className="card">
             <h2>{project.title}</h2>
             <h3>Project Description:</h3>
@@ -52,7 +52,7 @@ const ProjectCard = ({ project }) => {
                 </div>
             )}
         </div>
-    );
+  )
 };
 
-export default ProjectCard;
+export default ProjectCard

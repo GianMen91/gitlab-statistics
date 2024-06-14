@@ -1,8 +1,8 @@
-import React from 'react';
-import './sidenav.css';
+import React from 'react'
+import './sidenav.css'
 
 const Sidenav = ({ user, onLogout, darkMode, toggleDarkMode, isActive }) => {
-    return (
+  return (
         <div className={`sidenav ${isActive ? 'active' : ''}`}>
             <div className="profile-section">
                 <img src={user.avatar_url} alt="User Profile" className="profile-image" />
@@ -19,7 +19,7 @@ const Sidenav = ({ user, onLogout, darkMode, toggleDarkMode, isActive }) => {
                 <button onClick={onLogout} className="logout-button">Logout</button>
             </div>
         </div>
-    );
-};
+  )
+}
 
-export default Sidenav;
+export default Sidenav
