@@ -2,8 +2,6 @@
 
 A dashboard application built with React to display GitLab statistics using [GitLab APIs](https://docs.gitlab.com/ee/api/api_resources.html), including merge requests, project details, and issue timelines.
 
-https://github.com/GianMen91/gitlab-statistics/assets/26220496/a03af0bf-ca63-4152-a619-cd024fba8983
-
 ## Overview
 
 This dashboard application fetches data from the GitLab API to provide statistics about closed issues, merge requests, and project details for a specific assignee. It visualizes the data using React components and Chart.js.
