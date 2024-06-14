@@ -62,7 +62,7 @@ const LoginPage = ({ onLogin }) => {
         </div>
         {/* Input for entering access token */}
         <input
-          type="text"
+          type="password"
           placeholder="Enter GitLab Access Token"
           value={accessToken}
           onChange={(e) => setAccessToken(e.target.value)}
