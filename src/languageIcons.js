@@ -4,7 +4,6 @@ import javaIcon from './assets/languages/java.png';
 import phpIcon from './assets/languages/php.png';
 import htmlIcon from './assets/languages/html.png';
 import cssIcon from './assets/languages/css.png';
-import flutterIcon from './assets/languages/flutter.png';
 import swiftIcon from './assets/languages/swift.png';
 import dartIcon from './assets/languages/dart.png';
 import extjsIcon from './assets/languages/extjs.png';
@@ -15,6 +14,8 @@ import cIcon from './assets/languages/c.png';
 import cPlusPlusIcon from './assets/languages/c++.png';
 import liquidIcon from './assets/languages/liquid.png';
 import solidityIcon from './assets/languages/solidity.png';
+import batchfileIcon from './assets/languages/batchfile.png';
+import luaIcon from './assets/languages/lua.png';
 
 const languageIcons = {
     Swift: swiftIcon,
@@ -22,7 +23,6 @@ const languageIcons = {
     CSS: cssIcon,
     Dart: dartIcon,
     Extjs: extjsIcon,
-    Flutter: flutterIcon,
     Java: javaIcon,
     JavaScript: javascriptIcon,
     'Objective-C': objectiveCIcon,
@@ -34,6 +34,8 @@ const languageIcons = {
     'C++': cPlusPlusIcon,
     Liquid: liquidIcon,
     Solidity: solidityIcon,
+    Lua: luaIcon,
+    Batchfile: batchfileIcon,
 };
 
 export default languageIcons;
