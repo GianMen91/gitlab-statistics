@@ -20,6 +20,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   text-align: center;
+  margin-top: 20px;
 }
 
 .error-message {
@@ -39,4 +40,8 @@
 
 .login-card button:hover {
   background-color: #0056b3;
+}
+
+.login-selection-info-label {
+  margin-right: 20px;
 }
