@@ -18,27 +18,27 @@ This dashboard application fetches data from the GitLab API to provide statistic
 
 1. Clone the repository:
 
-`git clone https://github.com/GianMen91/gitlab-statistics.git`
+    `git clone https://github.com/GianMen91/gitlab-statistics.git`
 
 2. Install dependencies:
 
-`npm install`
+    `npm install`
 
 3. Get or create your GitLab access token
 
 - Log in to your GitLab account.
 - Navigate to your profile settings by clicking on your avatar in the top right corner and selecting Settings.
 - In the left sidebar, click on Access Tokens.
-- Give your token a name, select the desired scopes (e.g., api), and click Create personal access token.
+- Give your token a name, select the desired scopes (e.g., API), and click Create personal access token.
 - Copy the generated token and keep it safe. You'll need it for the next step.
 
 Open the project in your preferred code editor and navigate to the App.js file. Replace the placeholder access token with your actual GitLab access token:
 
-`const ACCESS_TOKEN = 'your-access-token'; // Replace 'your-access-token' with your actual GitLab access token`
+    `const ACCESS_TOKEN = 'your-access-token'; // Replace 'your-access-token' with your actual GitLab access token`
 
 5. Start the development server:
 
-`npm start`
+   `npm start`
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
@@ -49,7 +49,7 @@ Open the project in your preferred code editor and navigate to the App.js file. 
 
 ## Contributing
 
-Contributions from users are highly valued and appreciated. There are two main ways to contribute to this project: through pull requests and issues.
+Contributions from users are highly valued and appreciated. Two main ways to contribute to this project are through pull requests and issues.
 
 ### Pull Requests
 
@@ -63,7 +63,7 @@ Contributions from users are highly valued and appreciated. There are two main w
 1. Navigate to the [Issues](https://github.com/GianMen91/gitlab-statistics/issues) section of the repository.
 2. Check if there is an existing issue similar to the one you'd like to create.
 3. If there isn't an existing issue, create a new issue by clicking the "New issue" button.
-4. Provide a descriptive title and detailed information about the proposed changes that you want to potentially add to the current script.
+4. Provide a descriptive title and detailed information about the proposed changes you want to add to the current script.
 
 ---
 
@@ -71,7 +71,7 @@ Feel free to contribute and share
 
 ## Troubleshooting
 
-Use nvm install v22.2.0 in case of error
+Use nvm install v22.2.0 in case of an error
 
 ## License
 
