@@ -4,7 +4,7 @@ A dashboard application built with React to display GitLab statistics using [Git
 
 ## Overview
 
-This dashboard application fetches data from the GitLab API to provide statistics about closed issues, merge requests, and project details for a specific assignee. It visualizes the data using React components and Chart.js.
+This dashboard application uses the GitLab API to provide statistics on closed issues, merge requests, and project details for a specific assignee. Data is visualized with React components and Chart.js. The idea behind this dashboard is to serve as a portfolio piece, allowing developers to showcase their projects, languages used, and relevant statistics, making it a valuable resource for job interviews by highlighting the developer's skills and experience.
 
 ## Technologies Utilized
 
